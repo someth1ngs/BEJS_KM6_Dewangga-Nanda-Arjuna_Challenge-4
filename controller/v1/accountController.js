@@ -4,16 +4,16 @@ const prisma = new PrismaClient();
 module.exports = {
   store: async (req, res, next) => {
     try {
-      let { bank_name, bank_account_number, balance, account_id } = req.body;
+      let { bank_name, bank_account_number, balance, user_id } = req.body;
 
-      let exist = await prisma.account.findUnique({
-        where: { id: account_id },
+      let exist = await prisma.user.findUnique({
+        where: { id: user_id },
       });
 
       if (!exist) {
         return res.status(404).json({
           status: false,
-          message: `account dengan id ${account_id} tidak dapat ditemukan`,
+          message: `User dengan id ${user_id} tidak dapat ditemukan`,
         });
       }
 
@@ -22,12 +22,7 @@ module.exports = {
           bank_name,
           bank_account_number,
           balance,
-          account: {
-            connect: { id: account_id },
-          },
-        },
-        include: {
-          account: true,
+          user: { connect: { id: user_id } },
         },
       });
 
