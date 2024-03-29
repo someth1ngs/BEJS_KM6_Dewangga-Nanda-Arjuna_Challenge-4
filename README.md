@@ -18,5 +18,11 @@ Proyek ini merupakan implementasi dari materi yang dipelajari pada Chapter 4, ya
 - Penggunaan Nodemon untuk memantau perubahan pada berkas dan secara otomatis menghidupkan ulang server.
 - Penanganan permintaan HTTP POST dan GET untuk membuat dan mengambil data dari server.
 
+## Fitur yang ingin ditambahkan
+1. PUT
+2. DELETE
+3. Menampilkan satu user memiliki berapa banyak akun bank
+4. Menampilkan detail satu user pada bank accountnya
+
 ## Created by
 Dewangga Nanda Arjuna (Me) 👋
