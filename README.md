@@ -8,6 +8,9 @@ Proyek ini merupakan implementasi dari materi yang dipelajari pada Chapter 4, ya
 - Pembuatan akun bank baru dengan menyertakan informasi seperti nama bank, nomor rekening, dan saldo awal.
 - Pelaksanaan transfer dana antar akun bank dengan memvalidasi saldo yang mencukupi.
 - Penggunaan Express.js untuk mengatur rute dan mengelola permintaan HTTP dari klien.
-- Implementasi kontroler untuk mengelola logika bisnis di dalam aplikasi.
+- Implementasi Controller untuk mengelola logika bisnis di dalam aplikasi.
 - Penggunaan Nodemon untuk memantau perubahan pada berkas dan secara otomatis menghidupkan ulang server.
 - Penanganan permintaan HTTP POST dan GET untuk membuat dan mengambil data dari server.
+
+## Created by
+Dewangga Nanda Arjuna (Me) 👋
