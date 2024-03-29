@@ -44,7 +44,9 @@ module.exports = {
 
   index: async (req, res, next) => {
     try {
-      let users = await prisma.user.findMany();
+      let users = await prisma.user.findMany({
+        orderBy: { id: "asc" },
+      });
 
       res.status(200).json({
         status: true,

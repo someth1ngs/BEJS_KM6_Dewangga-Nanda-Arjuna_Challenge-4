@@ -38,7 +38,9 @@ module.exports = {
 
   index: async (req, res, next) => {
     try {
-      let accounts = await prisma.bank_Account.findMany();
+      let accounts = await prisma.bank_Account.findMany({
+        orderBy: { id: "asc" },
+      });
 
       res.status(200).json({
         status: true,
