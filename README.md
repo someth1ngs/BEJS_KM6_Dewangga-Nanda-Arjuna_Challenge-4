@@ -3,6 +3,12 @@
 ## Deskripsi Proyek
 Proyek ini merupakan implementasi dari materi yang dipelajari pada Chapter 4, yang mencakup konsep-konsep dasar dalam pengembangan web menggunakan Node.js, Express.js, dan ORM dengan Prisma. Kami menerapkan berbagai konsep dan teknologi tersebut untuk membuat aplikasi sederhana yang dapat melakukan manajemen akun bank dan transaksi.
 
+## Documentation
+![image](https://github.com/someth1ngs/BEJS_KM6_Dewangga-Nanda-Arjuna_Challenge-4/assets/81727953/82fff0d5-a9ff-45fe-a34b-d206b16b429c)
+<br>
+![image](https://github.com/someth1ngs/BEJS_KM6_Dewangga-Nanda-Arjuna_Challenge-4/assets/81727953/d7476934-23f5-4a60-a87c-7c85d7598116)
+
+
 ## Fitur yang Diimplementasikan
 - Penggunaan Prisma ORM untuk berinteraksi dengan database PostgreSQL.
 - Pembuatan akun bank baru dengan menyertakan informasi seperti nama bank, nomor rekening, dan saldo awal.
