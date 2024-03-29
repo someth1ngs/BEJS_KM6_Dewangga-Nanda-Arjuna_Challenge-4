@@ -1,0 +1,53 @@
+# API USERS
+
+### Post - menambahkan user baru beserta dengan profilnya.
+POST http://localhost:3000/api/v1/users
+Content-Type: application/json
+
+{
+    "name": "Cimol",
+    "email": "cimol@gmail.com",
+    "password": "cimol123",
+    "identity_type": "KTP",
+    "identity_number": "0000000000000002",
+    "address": "Jalan Menuju Dark System"
+}
+
+### GET - menampilkan daftar users.
+GET http://localhost:3000/api/v1/users
+
+### GET - menampilkan detail informasi user (tampilkan juga profilnya).
+GET http://localhost:3000/api/v1/users/2
+
+### POST - menambahkan akun baru ke user yang sudah didaftarkan.
+POST http://localhost:3000/api/v1/accounts
+Content-Type: application/json
+
+{
+    "bank_name": "BNI",
+    "bank_account_number": "12143208019",
+    "balance": 2000000,
+    "user_id": 2
+}
+
+### GET - menampilkan daftar akun.
+GET http://localhost:3000/api/v1/accounts
+
+### GET - menampilkan detail akun.
+GET http://localhost:3000/api/v1/accounts/1
+
+### POST - mengirimkan uang dari 1 akun ke akun lain (tentukan request body nya).
+POST http://localhost:3000/api/v1/transactions
+Content-Type: application/json
+
+{
+  "source_account_id": 1,
+  "destination_account_id": 2,
+  "amount": 12345
+}
+
+### GET - menampilkan daftar transaksi.
+GET http://localhost:3000/api/v1/transactions
+
+### GET - menampilkan detail transaksi (tampilkan juga pengirim dan penerimanya).
+GET http://localhost:3000/api/v1/transactions/3
