@@ -15,38 +15,58 @@ module.exports = {
       });
 
       if (!sourceAccount || !destinationAccount) {
-        return res
-          .status(404)
-          .json({ message: "Untuk pengirim atau penerima tidak valid" });
+        return res.status(404).json({
+          true: false,
+          message: "Untuk pengirim atau penerima tidak valid",
+        });
       }
 
       if (sourceAccount.balance < amount) {
-        return res.status(400).json({ message: "Saldo tidak mencukupi" });
+        return res.status(400).json({
+          true: false,
+          message: "Saldo tidak mencukupi",
+        });
       }
 
-      const transferTransaction = await prisma.$transaction([
-        prisma.bank_Account.update({
-          where: { id: source_account_id },
-          data: { balance: { decrement: amount } },
-        }),
-
-        prisma.bank_Account.update({
-          where: { id: destination_account_id },
-          data: { balance: { increment: amount } },
-        }),
-
-        prisma.transaction.create({
+      const transferTransaction = await prisma.transaction.create({
           data: {
             amount,
-            sourceAccounts: { connect: { id: source_account_id } },
-            destinationAccounts: { connect: { id: destination_account_id } },
+            sourceAccounts: {
+              connect: {
+                id: source_account_id,
+              },
+            },
+            destinationAccounts: {
+              connect: {
+                id: destination_account_id,
+              },
+            },
+          },
+        })
+
+        await prisma.bank_Account.update({
+          where: { id: source_account_id },
+          data: {
+            balance: {
+              decrement: amount,
+            },
+          },
+        })
+
+        await prisma.bank_Account.update({
+          where: { id: destination_account_id },
+          data: {
+            balance: {
+              increment: amount,
+            },
           },
         }),
-      ]);
 
-      res
-        .status(200)
-        .json({ message: "Transfer Sukses", data: transferTransaction[2] });
+      res.status(200).json({
+        status: true,
+        message: "Transfer Sukses",
+        data: transferTransaction,
+      });
     } catch (error) {
       next(error);
     }
@@ -68,9 +88,8 @@ module.exports = {
 
   show: async (req, res, next) => {
     try {
-      let transactionId = Number(req.params.id);
       let transaction = await prisma.transaction.findUnique({
-        where: { id: transactionId },
+        where: { id: Number(req.params.id) },
         include: {
           sourceAccounts: true,
           destinationAccounts: true,
@@ -81,7 +100,8 @@ module.exports = {
         return res.status(400).json({
           status: false,
           message:
-            "transaksi tidak ditemukan dengan id Transaksi " + transactionId,
+            "transaksi tidak ditemukan dengan id Transaksi " +
+            Number(req.params.id),
         });
       }
 
