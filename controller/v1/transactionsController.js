@@ -29,44 +29,43 @@ module.exports = {
       }
 
       const transferTransaction = await prisma.transaction.create({
-          data: {
-            amount,
-            sourceAccounts: {
-              connect: {
-                id: source_account_id,
-              },
-            },
-            destinationAccounts: {
-              connect: {
-                id: destination_account_id,
-              },
+        data: {
+          amount,
+          sourceAccounts: {
+            connect: {
+              id: source_account_id,
             },
           },
-        })
-
-        await prisma.bank_Account.update({
-          where: { id: source_account_id },
-          data: {
-            balance: {
-              decrement: amount,
+          destinationAccounts: {
+            connect: {
+              id: destination_account_id,
             },
           },
-        })
-
-        await prisma.bank_Account.update({
-          where: { id: destination_account_id },
-          data: {
-            balance: {
-              increment: amount,
-            },
-          },
-        }),
-
-      res.status(200).json({
-        status: true,
-        message: "Transfer Sukses",
-        data: transferTransaction,
+        },
       });
+
+      await prisma.bank_Account.update({
+        where: { id: source_account_id },
+        data: {
+          balance: {
+            decrement: amount,
+          },
+        },
+      });
+
+      await prisma.bank_Account.update({
+        where: { id: destination_account_id },
+        data: {
+          balance: {
+            increment: amount,
+          },
+        },
+      }),
+        res.status(200).json({
+          status: true,
+          message: "Transfer Sukses",
+          data: transferTransaction,
+        });
     } catch (error) {
       next(error);
     }
